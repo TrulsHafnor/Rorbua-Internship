@@ -5,10 +5,6 @@
 <div>
   <%= link_to "Edit this story", edit_story_path(@story) %> |
   <%= link_to "Back to stories", stories_path %>
+  <button><%= link_to "Play this story", @story.story_file, class: "html5" %></button>
   <%= button_to "Destroy this story", @story, method: :delete %>
 </div>
-
-<audio controls>
-  <source src="<%= rails_blob_url(@story.story_file)%>">
-  Your browser does not support the audio element.
-</audio>
