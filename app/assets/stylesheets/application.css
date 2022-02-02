@@ -14,6 +14,21 @@
  *= require_self
  */
 
+.container {
+   display: flex;
+}
+
+.container div {
+   padding: 20px;
+}
+
+header {
+   font-size: 30px;
+   display: block;
+   margin-left: auto;
+   margin-right: auto;
+}
+
 #stories div {
    padding-top: 30px;
 }
