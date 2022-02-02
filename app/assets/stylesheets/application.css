@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+#stories div {
+   padding-top: 30px;
+}
