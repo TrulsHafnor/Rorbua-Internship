@@ -1,14 +1,7 @@
 <div id="<%= dom_id story %>">
-  <p>
-    <strong>Title:</strong>
-    <%= story.title %>
-  </p>
 
-  <p>
-    <strong>Description:</strong>
-    <%= story.description %>
-  </p>
-
+  <h3><%= story.title %></h3>
+  <p><%= story.description %></p>
   <p>
     <audio controls>
       <source src="<%= rails_blob_url(story.story_file) %>">
