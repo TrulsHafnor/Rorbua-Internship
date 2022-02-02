@@ -30,6 +30,9 @@ gem "jbuilder"
 #Denne blir brukt til å håndtere brukere [https://github.com/heartcombo/devise]
 gem 'devise'
 
+# Active storage validator [https://github.com/aki77/activestorage-validator]
+gem 'activestorage-validator'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
@@ -73,3 +76,6 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem 'bootstrap'
+gem 'jquery-rails'
