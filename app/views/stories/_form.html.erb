@@ -27,6 +27,10 @@
   </div>
 
   <div>
+    <%= form.number_field :user_id, id: :story_user_id, value: current_user.id, type: :hidden %>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
