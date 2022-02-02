@@ -1,6 +1,8 @@
 require "test_helper"
 
 class StoriesControllerTest < ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   setup do
     @story = stories(:one)
   end
@@ -16,9 +18,14 @@ class StoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create story" do
-    assert_difference("Story.count") do
-      post stories_url, params: { story: { description: @story.description, title: @story.title } }
-    end
+
+    post stories_url, params: {
+      story: {
+        description: @story.description,
+        title: @story.title,
+        story_file: fixture_file_upload("one", "audio/mp3")
+      }
+    }
 
     assert_redirected_to story_url(Story.last)
   end
@@ -34,7 +41,13 @@ class StoriesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update story" do
-    patch story_url(@story), params: { story: { description: @story.description, title: @story.title } }
+    patch story_url(@story), params: {
+      story: {
+        description: @story.description,
+        title: @story.title,
+        story_file: fixture_file_upload("one", "audio/mp3")
+      }
+    }
     assert_redirected_to story_url(@story)
   end
 
@@ -45,4 +58,14 @@ class StoriesControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to stories_url
   end
+
+  test "input fields must not be empty" do
+    story = Story.new
+
+    assert story.invalid?
+    assert story.errors[:title].any?
+    assert story.errors[:description].any?
+    assert story.errors[:story_file].any?
+  end
+
 end
