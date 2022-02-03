@@ -1,12 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
 <div id="stories" class="flex_container">
-  <% @stories.each do |story| %>
+<% @stories.each do |story| %>
     <div>
       <%= render story %>
       <p><%= link_to "Show this story", story %></p>
     </div>
-  <% end %>
+<% end %>
 </div>
 
 <%= link_to "New story", new_story_path %>

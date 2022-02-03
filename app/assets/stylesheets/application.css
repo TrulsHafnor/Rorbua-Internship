@@ -14,21 +14,21 @@
  *= require_self
  */
 
-.container {
+.content {
+   margin: 0;
+   padding: 0;
+   min-height: 800px;
    display: flex;
 }
 
-.container div {
+.flex_container {
+   display: flex;
+}
+
+.flex_container div {
    padding: 20px;
 }
 
-header {
-   font-size: 30px;
-   display: block;
-   margin-left: auto;
-   margin-right: auto;
-}
-
-#stories div {
-   padding-top: 30px;
+#sidenav {
+   min-height: 800px;
 }
