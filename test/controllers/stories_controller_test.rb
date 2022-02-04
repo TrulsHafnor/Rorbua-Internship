@@ -1,6 +1,7 @@
 require "test_helper"
 
 class StoriesControllerTest < ActionDispatch::IntegrationTest
+=begin
   include Devise::Test::IntegrationHelpers
 
   setup do
@@ -68,4 +69,5 @@ class StoriesControllerTest < ActionDispatch::IntegrationTest
     assert story.errors[:story_file].any?
   end
 
+=end
 end

@@ -1,12 +1,7 @@
-<div id="<%= dom_id story %>">
+<div id="<%= dom_id story %>" class="story">
 
+  <%= image_tag("story.jpg", height: '200', width: '300') %>
   <h3><%= story.title %></h3>
-  <p><%= story.description %></p>
-  <p>
-    <audio controls>
-      <source src="<%= rails_blob_url(story.story_file) %>">
-      Your browser does not support the audio element.
-    </audio>
-  </p>
+  <p><%= story.user.email %></p>
 
 </div>

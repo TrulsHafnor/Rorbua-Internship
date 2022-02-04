@@ -1,11 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
 <div id="stories" class="stories_container">
-  <% @stories.each do |story| %>
+  <h2> Favourittes </h2>
+
+  <% @favourittes.each do |favouritte| %>
+    <% story = favouritte.story %>
     <%= link_to story do %>
       <%= render story %>
     <% end %>
   <% end %>
 </div>
-
-<%= link_to "New story", new_story_path %>
