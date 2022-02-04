@@ -1,6 +1,8 @@
 require "test_helper"
 
 class FavourittesControllerTest < ActionDispatch::IntegrationTest
+=begin
+
   setup do
     @favouritte = favourittes(:one)
   end
@@ -45,4 +47,6 @@ class FavourittesControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to favourittes_url
   end
+end
+=end
 end
