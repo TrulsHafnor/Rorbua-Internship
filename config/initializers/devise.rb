@@ -309,6 +309,6 @@ Devise.setup do |config|
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
 
-  #Uten denne funket ikke det å gem devise https://github.com/heartcombo/devise/issues/5439
+  #Uten denne funket ikke det å vise gem devise https://github.com/heartcombo/devise/issues/5439
   config.navigational_formats = ['*/*', :html, :turbo_stream]
 end

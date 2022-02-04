@@ -8,6 +8,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, :username, :birthday, presence: true
   validate :validate_age
   validates :username, uniqueness: true
+  validates :username, format: { with: /\A[a-zA-Z0-9]+\Z/, message: 'cannot contain whitespace' }
 
   private
 
