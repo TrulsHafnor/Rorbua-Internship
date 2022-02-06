@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :favourites
   resources :favourittes
   devise_for :users
   resources :stories
@@ -6,5 +7,5 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  root "feed#index"
+  root "stories#index"
 end

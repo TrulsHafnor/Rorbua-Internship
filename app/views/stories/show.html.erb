@@ -1,25 +1,3 @@
 <p style="color: green"><%= notice %></p>
 
-  <%= image_tag("story.jpg", height: '240', width: '360') %>
-  <h3><%= @story.title %></h3>
-  <br>
-
-  <%= image_tag("user.png", height: '40', width: '40') %>
-  <strong><%= @story.user.email %></strong>
-  <br> <br>
-
-  <p><%= @story.description %></p>
-    <audio controls>
-      <source src="<%= rails_blob_url(@story.story_file) %>">
-      Your browser does not support the audio element.
-    </audio>
-
-  </br>
-
-<%= button_to 'Add to Favourittes', favourittes_path(story_id: @story) %>
-
-<div>
-  <%= link_to "Edit this story", edit_story_path(@story) %> |
-  <%= link_to "Back to stories", root_path %>
-  <%= button_to "Destroy this story", @story, method: :delete %>
-</div>
+<%= render @story %>

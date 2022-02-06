@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_04_102142) do
+ActiveRecord::Schema.define(version: 2022_02_05_230026) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,13 +40,13 @@ ActiveRecord::Schema.define(version: 2022_02_04_102142) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "favourittes", force: :cascade do |t|
+  create_table "favourites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "story_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["story_id"], name: "index_favourittes_on_story_id"
-    t.index ["user_id"], name: "index_favourittes_on_user_id"
+    t.index ["story_id"], name: "index_favourites_on_story_id"
+    t.index ["user_id"], name: "index_favourites_on_user_id"
   end
 
   create_table "stories", force: :cascade do |t|
@@ -55,6 +55,8 @@ ActiveRecord::Schema.define(version: 2022_02_04_102142) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.integer "favourittes_id"
+    t.index ["favourittes_id"], name: "index_stories_on_favourittes_id"
     t.index ["user_id"], name: "index_stories_on_user_id"
   end
 
@@ -66,16 +68,18 @@ ActiveRecord::Schema.define(version: 2022_02_04_102142) do
     t.datetime "remember_created_at", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "favourittes_id"
     t.string "first_name"
     t.string "last_name"
     t.string "username"
     t.date "birthday"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["favourittes_id"], name: "index_users_on_favourittes_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "favourittes", "stories"
-  add_foreign_key "favourittes", "users"
+  add_foreign_key "favourites", "stories"
+  add_foreign_key "favourites", "users"
 end

@@ -1,7 +1,42 @@
-<div id="<%= dom_id story %>" class="story">
+<div id="<%= dom_id story %>" class="feed_story">
 
-  <%= image_tag("story.jpg", height: '200', width: '300') %>
-  <h3><%= story.title %></h3>
-  <p><%= story.user.email %></p>
+  <div id=show_story_top>
+    <div>
+      <%= image_tag("lorem.jpg", height: '300', width: '300') %>
+    </div>
+
+    <div id="show_story_top_right">
+      <div>
+        <h1><%= @story.title %></h1>
+        <br>
+        <%= image_tag("user.png", height: '40', width: '40') %>
+        <strong><%= @story.user.username %></strong>
+      </div>
+    </div>
+  </div>
+
+  <div id=show_story_center>
+    <audio controls>
+      <source src="<%= rails_blob_url(@story.story_file) %>">
+      Your browser does not support the audio element.
+    </audio>
+
+    <% if current_user %>
+      <% if @story.isFavourite(current_user) %>
+        <%= button_to "Remove from Favorites", @story.getFavourite(current_user), method: :delete %>
+      <% else %>
+        <%= button_to 'Add to Favorites', favourites_path(story_id: @story) %>
+      <% end %>
+    <% end %>
+
+  </div>
+
+  <p><%= @story.description %></p>
+
+  <div>
+    <%= link_to "Edit this story", edit_story_path(@story) %> |
+    <%= link_to "Back to stories", root_path %>
+    <%= button_to "Destroy this story", @story, method: :delete %>
+  </div>
 
 </div>

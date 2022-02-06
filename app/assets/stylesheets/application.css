@@ -30,17 +30,51 @@ main {
    min-height: 800px;
 }
 
-/* Stories */
-.stories_container {
+/* Feed index */
+.feed_stories_container {
    display: flex;
 }
 
-.story {
+.feed_story {
    margin: 20px;
    color:black;
    text-decoration: none;
 }
 
-.story p {
+.feed_story p {
    text-decoration: none;
 }
+
+
+/* Stories show */
+#show_story_top {
+   display: flex;
+   margin-bottom: 40px;
+}
+
+#show_story_top div {
+   margin-right: 20px;
+}
+
+#show_story_top_right {
+   position: relative;
+}
+
+#show_story_top_right div {
+   position: absolute;
+   width: 800px;
+   bottom: 10px;
+}
+
+
+#show_story_center {
+   display: flex;
+   margin-bottom: 40px;
+}
+
+#show_story_center button {
+   margin-left: 20px;
+
+}
+
+

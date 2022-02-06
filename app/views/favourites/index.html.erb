@@ -1,0 +1,19 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Favourites</h1>
+
+<div id="favourites">
+  <% @favourites.each do |favourite| %>
+
+    <% story = favourite.story %>
+    <%= link_to story do %>
+      <div id="<%= dom_id story %>" class="feed_story">
+        <%= image_tag("lorem.jpg", height: '250', width: '250') %>
+        <h3><%= story.title %></h3>
+        <p><%= story.user.username %></p>
+      </div>
+    <% end %>
+
+    <%= button_to "Remove from favourites", favourite, method: :delete %>
+  <% end %>
+</div>
