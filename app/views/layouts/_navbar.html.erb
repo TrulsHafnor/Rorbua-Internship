@@ -13,7 +13,7 @@
           <%= link_to "New story", new_story_path %>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Favorites</a>
+          <%= link_to "Favorites", favourites_path %>
         </li>
         <li class="nav-item">
           <% if user_signed_in? %>

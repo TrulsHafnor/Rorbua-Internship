@@ -1,9 +1,11 @@
 <div id="<%= dom_id story %>" class="feed_story">
 
   <div class="card mb-3">
+    <%= link_to "Back to stories", root_path, class: "btn btn-success" %>
     <!-- <img src="..." class="card-img-top" alt="..."> -->
     <div class="card-body">
       <h5 class="card-title"><%= story.title %></h5>
+      <p class="card-text"><%= story.user.username %></p>
       <audio controls>
         <source src="<%= rails_blob_url(story.story_file) %>">
         Your browser does not support the audio element.
@@ -12,9 +14,19 @@
       <button>Like</button>
       <button>Dislike</button>
       <button>Favorite</button>
-      <% if current_user.id == story.user_id %>
-        <%= link_to "Edit this story", edit_story_path(@story) %>
+      <% if current_user %>
+        <% if @story.isFavourite(current_user) %>
+          <%= button_to "Remove from Favorites", @story.getFavourite(current_user), method: :delete %>
+        <% else %>
+          <%= button_to 'Add to Favorites', favourites_path(story_id: @story) %>
+        <% end %>
       <% end %>
+      <% if user_signed_in? %>
+        <% if current_user.id == story.user_id %>
+          <%= link_to "Edit this story", edit_story_path(@story) %>
+        <% end %>
+      <% end %>
+
       <p class="card-text"><small class="text-muted">Lastet opp <%= story.created_at %></small></p>
     </div>
   </div>
