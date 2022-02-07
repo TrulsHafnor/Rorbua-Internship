@@ -18,15 +18,26 @@
   </head>
 
   <body>
+
     <%= render 'layouts/navbar' %>
 
-    <section class="content">
-      <%= render 'layouts/sidebar' %>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-2">
 
-      <main class='<%= controller.controller_name %>'>
-        <%= yield %>
-      </main>
-    </section>
+        </div>
+        <div class="col-lg-6">
+
+          <%= yield %>
+
+        </div>
+        <div class="col-lg-2">
+
+        </div>
+      </div>
+
+    </div>
+
   </body>
 
 </html>
