@@ -10,10 +10,25 @@
         <source src="<%= rails_blob_url(story.story_file) %>">
         Your browser does not support the audio element.
       </audio>
+      <p><%= story.likes.count %> likes</p>
+      <p><%= story.dislikes.count %> dislikes</p>
       <p class="card-text"><%= story.description %></p>
-      <button>Like</button>
-      <button>Dislike</button>
-      <button>Favorite</button>
+
+      <% like = current_user.likes.find_by(story: @story) %>
+      <% if like.nil? %>
+        <%= button_to "Like", likes_path, params: { like: {story_id: @story.id }}, method: :post %>
+      <% else %>
+        <%= button_to "Unlike", like_path(like), method: :delete %>
+      <% end %>
+
+      <% dislike = current_user.dislikes.find_by(story: @story) %>
+      <% if dislike.nil? %>
+        <%= button_to "Dislike", dislikes_path, params: { dislike: {story_id: @story.id }}, method: :post %>
+      <% else %>
+        <%= button_to "Undo dislike", dislike_path(dislike), method: :delete %>
+      <% end %>
+
+
       <% if current_user %>
         <% if @story.isFavourite(current_user) %>
           <%= button_to "Remove from Favorites", @story.getFavourite(current_user), method: :delete %>

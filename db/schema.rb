@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_07_131738) do
+ActiveRecord::Schema.define(version: 2022_02_08_135234) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,6 +40,16 @@ ActiveRecord::Schema.define(version: 2022_02_07_131738) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "dislikes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "story_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["story_id"], name: "index_dislikes_on_story_id"
+    t.index ["user_id", "story_id"], name: "index_dislikes_on_user_id_and_story_id", unique: true
+    t.index ["user_id"], name: "index_dislikes_on_user_id"
+  end
+
   create_table "favourites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "story_id"
@@ -49,13 +59,19 @@ ActiveRecord::Schema.define(version: 2022_02_07_131738) do
     t.index ["user_id"], name: "index_favourites_on_user_id"
   end
 
-  create_table "favourittes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "story_id"
+  create_table "likes", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "story_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["story_id"], name: "index_favourittes_on_story_id"
-    t.index ["user_id"], name: "index_favourittes_on_user_id"
+    t.index ["story_id"], name: "index_likes_on_story_id"
+    t.index ["user_id", "story_id"], name: "index_likes_on_user_id_and_story_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
+  create_table "reactions", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "stories", force: :cascade do |t|
@@ -82,8 +98,10 @@ ActiveRecord::Schema.define(version: 2022_02_07_131738) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "dislikes", "stories"
+  add_foreign_key "dislikes", "users"
   add_foreign_key "favourites", "stories"
   add_foreign_key "favourites", "users"
-  add_foreign_key "favourittes", "stories"
-  add_foreign_key "favourittes", "users"
+  add_foreign_key "likes", "stories"
+  add_foreign_key "likes", "users"
 end
