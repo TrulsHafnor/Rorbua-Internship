@@ -1,5 +1,5 @@
 class DislikesController < ApplicationController
-
+  before_action :authenticate_user!, only: [:create, :destroy]
 
   def create
     @dislike = current_user.dislikes.new(dislike_params)
