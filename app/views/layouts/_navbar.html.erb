@@ -1,29 +1,20 @@
-<nav class="navbar navbar-light bg-light">
-  <div class="container-fluid">
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-      <%= link_to "Rorbua", root_path, class: "no_link" %>
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="#">My stories</a>
-        </li>
-        <li class="nav-item">
-          <%= link_to "New story", new_story_path %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Favorites", favourites_path %>
-        </li>
-        <li class="nav-item">
+
+<nav class="navbar navbar-light">
+  <a href="#sidebar" data-bs-toggle="offcanvas" role="button" arial-controls="sidebar" class="p-2 m-2">
+    <span class="material-icons">menu</span>
+  </a>
+  <div>
+    <ul class="navbar-nav">
+      <li>
+        <a class="nav-link">
           <% if user_signed_in? %>
-            <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class:"btn btn-info p-2 m-2" %>
           <% else %>
-            <%= link_to "Sign in", new_user_session_path %>
+            <%= link_to "Sign in", new_user_session_path, class:"btn btn-info p-2 m-2" %>
           <% end %>
-        </li>
-      </ul>
-    </div>
+        </a>
+      </li>
+    </ul>
   </div>
 </nav>
 
