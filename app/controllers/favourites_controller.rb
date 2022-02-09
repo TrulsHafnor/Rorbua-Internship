@@ -9,25 +9,21 @@ class FavouritesController < ApplicationController
   # POST /favourites or /favourites.json
   def create
     @favourite = Favourite.new
-    @story = Story.find(params[:story_id])
-
-    @favourite.story = @story
+    @favourite.story = Story.find(params[:story_id])
     @favourite.user = current_user
 
     if @favourite.save
-      flash[:notice] = "Story was added to favourites"
+      redirect_to favourites_url, notice: "Story was added to favourites"
     else
-      flash[:notice] = @favourite.errors.full_messages.to_sentence
+      redirect_to root_path, notice: "Error! Could not add story to favourites!"
     end
-    redirect_back(fallback_location: root_path)
   end
 
   # DELETE /favourites/1 or /favourites/1.json
   def destroy
     @favourite = Favourite.find(params[:id])
     @favourite.destroy
-    flash[:notice] = "Story was removed from favourites"
-    redirect_back(fallback_location: root_path)
+    redirect_to favourites_url, notice: "Story was removed from favourites"
   end
 
 end
