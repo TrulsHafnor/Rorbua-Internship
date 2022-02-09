@@ -7,4 +7,4 @@
 #   Character.create(name: "Luke", movie: movies.first)
 #Favourite.delete_all
 #
-Favourite.create(:user_id => 1, :story_id => 1)
+Comment.delete_all

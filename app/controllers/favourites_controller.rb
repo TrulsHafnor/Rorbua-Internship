@@ -9,9 +9,7 @@ class FavouritesController < ApplicationController
   # POST /favourites or /favourites.json
   def create
     @favourite = Favourite.new
-    @story = Story.find(params[:story_id])
-
-    @favourite.story = @story
+    @favourite.story = Story.find(params[:story_id])
     @favourite.user = current_user
 
     if @favourite.save

@@ -4,6 +4,7 @@ class Story < ApplicationRecord
   has_many :favourites, dependent: :destroy
   has_many :likes
   has_many :dislikes
+  has_many :comments
 
   validates :title, :description, presence: true
   validates :story_file, presence: true, blob:{ content_type: :audio } #For flere validations: https://github.com/aki77/activestorage-validator

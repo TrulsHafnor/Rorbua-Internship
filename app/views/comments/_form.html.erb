@@ -1,0 +1,25 @@
+<%= form_with(model: comment) do |form| %>
+  <% if comment.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% comment.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :"Add a comment", style: "display: block" %>
+    <%= form.text_field :text %>
+  </div>
+
+  <% if @story %>
+    <%= hidden_field_tag(:story_id, @story.id) %>
+  <% end %>
+
+  <%= form.submit "Comment" %>
+
+<% end %>
