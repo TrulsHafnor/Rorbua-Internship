@@ -25,6 +25,7 @@ class StoriesController < ApplicationController
   def create
     #@story = Story.new(story_params)
     @story = current_user.stories.build(story_params)
+
     respond_to do |format|
       if @story.save
         format.html { redirect_to story_url(@story), notice: "Story was successfully created." }
@@ -34,6 +35,7 @@ class StoriesController < ApplicationController
         format.json { render json: @story.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /stories/1 or /stories/1.json
