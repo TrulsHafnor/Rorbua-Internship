@@ -4,16 +4,26 @@
 
 <div id="favourites">
   <% @favourites.each do |favourite| %>
-
     <% story = favourite.story %>
-    <%= link_to story do %>
-      <div id="<%= dom_id story %>" class="feed_story">
-        <%= image_tag("lorem.jpg", height: '250', width: '250') %>
-        <h3><%= story.title %></h3>
-        <p><%= story.user.username %></p>
+    <%= link_to story do%>
+      <div class="row">
+        <div class="card mb-3">
+          <div class="row g-0">
+            <div class="col-md-4">
+              <!-- <img src="..." class="img-fluid rounded-start" alt="..."> -->
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><%= story.title %></h5>
+                <p class="card-title"><%= story.user.username %></p>
+                <p class="card-text" ><%= story.description %></p>
+                <p class="card-text" ><small class="text-muted">Uploaded <%= story.created_at %></small></p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     <% end %>
-
     <%= button_to "Remove from favourites", favourite, method: :delete %>
   <% end %>
 </div>

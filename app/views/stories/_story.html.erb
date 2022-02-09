@@ -14,7 +14,9 @@
       <p><%= story.dislikes.count %> dislikes</p>
       <p class="card-text"><%= story.description %></p>
 
+      <!-- signed in -->
       <% if user_signed_in? %>
+        <!-- like og dislike buttons -->
         <% like = current_user.likes.find_by(story: @story) %>
         <% if like.nil? %>
           <%= button_to "Like", likes_path, params: { like: {story_id: @story.id }}, method: :post %>
@@ -29,19 +31,20 @@
           <%= button_to "Undo dislike", dislike_path(dislike), method: :delete %>
         <% end %>
 
-
-        <% if current_user %>
-          <% if @story.isFavourite(current_user) %>
-            <%= button_to "Remove from Favorites", @story.getFavourite(current_user), method: :delete %>
-          <% else %>
-            <%= button_to 'Add to Favorites', favourites_path(story_id: @story) %>
-          <% end %>
+        <!-- Favorite buttons -->
+        <% favourite = current_user.favourites.find_by(story: @story) %>
+        <% if favourite.nil? %>
+          <%= button_to 'Add to Favorites', favourites_path(story_id: @story) %>
+        <% else %>
+          <%= button_to "Remove from Favorites", favourite, method: :delete %>
         <% end %>
 
+        <!-- Edit story button -->
         <% if current_user.id == story.user_id %>
           <%= link_to "Edit this story", edit_story_path(@story) %>
         <% end %>
 
+      <!-- not signed in -->
       <% else %>
 
         <%= button_to "Like", likes_path, params: { like: {story_id: @story.id }}, method: :post %>
